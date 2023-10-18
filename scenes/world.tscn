@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnl0fiabsxsch"]
+[gd_scene load_steps=9 format=3 uid="uid://bnl0fiabsxsch"]
 
+[ext_resource type="Texture2D" uid="uid://cjab0aekjuwor" path="res://assets/textures/skybox/pan-med-tramonto-lg.jpg" id="1_12byc"]
 [ext_resource type="Texture2D" uid="uid://bjgpmij7lsp8h" path="res://assets/textures/blockout/Dark/texture_08.png" id="1_f6e7i"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="3_snofs"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_17xix"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_el6dr"]
+panorama = ExtResource("1_12byc")
 
 [sub_resource type="Sky" id="Sky_5rk4j"]
-sky_material = SubResource("ProceduralSkyMaterial_17xix")
+sky_material = SubResource("PanoramaSkyMaterial_el6dr")
 
 [sub_resource type="Environment" id="Environment_xi7be"]
 background_mode = 2
@@ -18,6 +19,8 @@ glow_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0ekt"]
 albedo_texture = ExtResource("1_f6e7i")
 uv1_triplanar = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aqm74"]
 
 [node name="world" type="Node3D"]
 
@@ -33,9 +36,19 @@ environment = SubResource("Environment_xi7be")
 [node name="stage" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="stage"]
-transform = Transform3D(1.0012, 0, 0, 0, 1.0012, 0, 0, 0, 1.0012, 0, 0, 0)
+transform = Transform3D(1.0012, 0, 0, 0, 1.0012, 0, 0, 0, 1.0012, 0, -0.5, 0)
 use_collision = true
 size = Vector3(50, 1, 50)
 material = SubResource("StandardMaterial3D_c0ekt")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="player" type="CharacterBody3D" parent="."]
+script = ExtResource("3_snofs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_aqm74")
+
+[node name="head" type="Node3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="player/head"]

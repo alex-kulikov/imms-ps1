@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2pl37feiljoo"
-path.s3tc="res://.godot/imported/pan_dunes_lg.jpg-d4d768b302d8b0466e7f67941a316919.s3tc.ctex"
+uid="uid://c8sytk775w3nx"
+path.s3tc="res://.godot/imported/pan-deepblue-lg.jpg-693bc3e1e114901c7977d7f4d84524e9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/skybox/pan_dunes_lg.jpg"
-dest_files=["res://.godot/imported/pan_dunes_lg.jpg-d4d768b302d8b0466e7f67941a316919.s3tc.ctex"]
+source_file="res://assets/textures/skybox/pan-deepblue-lg.jpg"
+dest_files=["res://.godot/imported/pan-deepblue-lg.jpg-693bc3e1e114901c7977d7f4d84524e9.s3tc.ctex"]
 
 [params]
 
