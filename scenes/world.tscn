@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnl0fiabsxsch"]
+[gd_scene load_steps=10 format=3 uid="uid://bnl0fiabsxsch"]
 
 [ext_resource type="Texture2D" uid="uid://cjab0aekjuwor" path="res://assets/textures/skybox/pan-med-tramonto-lg.jpg" id="1_12byc"]
 [ext_resource type="Texture2D" uid="uid://bjgpmij7lsp8h" path="res://assets/textures/blockout/Dark/texture_08.png" id="1_f6e7i"]
@@ -22,6 +22,9 @@ uv1_triplanar = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aqm74"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_blcd7"]
+height = 1.4
+
 [node name="world" type="Node3D"]
 
 [node name="env" type="Node3D" parent="."]
@@ -44,11 +47,18 @@ material = SubResource("StandardMaterial3D_c0ekt")
 [node name="player" type="CharacterBody3D" parent="."]
 script = ExtResource("3_snofs")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+[node name="standing_coll" type="CollisionShape3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_aqm74")
+
+[node name="crouching_coll" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+shape = SubResource("CapsuleShape3D_blcd7")
 
 [node name="head" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Camera3D" type="Camera3D" parent="player/head"]
+
+[node name="raycast_y_obst" type="RayCast3D" parent="player"]
+target_position = Vector3(0, 2, 0)
